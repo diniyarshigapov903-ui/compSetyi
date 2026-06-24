@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        .empty {
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список книг</h1>
+    <div id="output"></div>
+
+    <script>
+        let books = [
+            "Война и мир",
+            "Преступление и наказание",
+            "Мастер и Маргарита",
+            "Евгений Онегин",
+            "Тихий Дон"
+        ];
+
+        let output = document.getElementById('output');
+
+        if (books.length === 0) {
+            output.innerHTML = '<p class="empty">Список пуст</p>';
+        } else {
+            let html = '<ol>';
+            for (let i = 0; i < books.length; i++) {
+                html += '<li>' + books[i] + '</li>';
+            }
+            html += '</ol>';
+            output.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

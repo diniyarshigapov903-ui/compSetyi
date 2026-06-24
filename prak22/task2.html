@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 15px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+        .found {
+            color: green;
+        }
+        .not-found {
+            color: red;
+        }
+        .error {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Поиск города</h1>
+    <input type="text" id="cityInput" placeholder="Введите название города">
+    <button id="searchBtn">Найти</button>
+    <div id="result"></div>
+
+    <script>
+        let города = ["Москва", "Санкт-Петербург", "Казань", "Новосибирск", "Екатеринбург"];
+
+        let input = document.getElementById('cityInput');
+        let button = document.getElementById('searchBtn');
+        let result = document.getElementById('result');
+
+        function searchCity(city) {
+            if (city.trim() === '') {
+                return 'error';
+            }
+
+            let searchCityLower = city.trim().toLowerCase();
+            
+            for (let i = 0; i < города.length; i++) {
+                if (города[i].toLowerCase() === searchCityLower) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        button.onclick = function() {
+            let cityName = input.value;
+            let searchResult = searchCity(cityName);
+
+            if (searchResult === 'error') {
+                result.innerHTML = '<span class="error">Введите название города</span>';
+            } else if (searchResult) {
+                result.innerHTML = '<span class="found">Город найден</span>';
+            } else {
+                result.innerHTML = '<span class="not-found">Город не найден</span>';
+            }
+        };
+
+        input.onkeydown = function(event) {
+            if (event.key === 'Enter') {
+                button.click();
+            }
+        };
+    </script>
+</body>
+</html>

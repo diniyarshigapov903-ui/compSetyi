@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        button {
+            padding: 8px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .array-display {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Счётчик элементов</h1>
+    
+    <div class="array-display">
+        <strong>Массив:</strong> [5, 12, 8, 130, 44, 3, 7, 21]
+    </div>
+    
+    <button id="countBtn">Подсчитать</button>
+    <div id="result"></div>
+
+    <script>
+        let numbers = [5, 12, 8, 130, 44, 3, 7, 21];
+        let button = document.getElementById('countBtn');
+        let result = document.getElementById('result');
+
+        function countElements(arr) {
+            let больше10 = 0;
+            let меньше10 = 0;
+            let равно10 = 0;
+            let сумма = 0;
+
+            for (let i = 0; i < arr.length; i++) {
+                сумма += arr[i];
+
+                if (arr[i] > 10) {
+                    больше10++;
+                } else if (arr[i] < 10) {
+                    меньше10++;
+                } else {
+                    равно10++;
+                }
+            }
+
+            return {
+                больше10: больше10,
+                меньше10: меньше10,
+                равно10: равно10,
+                сумма: сумма
+            };
+        }
+
+        button.onclick = function() {
+            let stats = countElements(numbers);
+            
+            result.innerHTML = `
+                <p>Чисел больше 10: ${stats.больше10}</p>
+                <p>Чисел меньше 10: ${stats.меньше10}</p>
+                <p>Чисел равных 10: ${stats.равно10}</p>
+                <p><strong>Сумма всех элементов: ${stats.сумма}</strong></p>
+            `;
+        };
+    </script>
+</body>
+</html>
